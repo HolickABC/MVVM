@@ -21,23 +21,23 @@ public class BaseViewModel extends ViewModel implements IViewModel, LifecycleObs
     /**
      * 数据请求状态图loadSir
      */
-    public final ObservableField<Status> status = new ObservableField<>(Status.LOADING);
+    public ObservableField<Status> status = new ObservableField<>(Status.LOADING);
 
     //注册RxBus等
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     @Override
-    public void start() {
+    public void onStart() {
 
     }
 
     //销毁操作  如反注册RxBus
     @Override
     protected void onCleared() {
-        super.onCleared();
         if(mCompositeDisposable!=null){
             mCompositeDisposable.clear();
             mCompositeDisposable = null;
         }
+        super.onCleared();
     }
 
     @Override
@@ -59,4 +59,5 @@ public class BaseViewModel extends ViewModel implements IViewModel, LifecycleObs
     public void showErrorView() {
         status.set(Status.ERROR);
     }
+
 }

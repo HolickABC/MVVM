@@ -10,10 +10,11 @@ import java.io.File;
 
 public class ProjectConfig {
     public static final boolean DEBUG = true;
-    public static final String APPNAME = "WXD";
+    public static final String APPNAME = "MVVM";
 
-    public static final String DEBUG_BASE_URL = "https://news-at.zhihu.com/";
-    public static final String RELEASE_BASE_URL = "http://51wanxiangdai.com/";
+    public static final String DEBUG_BASE_URL = "http://cardmanager.chendind.com/api/";
+    public static final String RELEASE_BASE_URL = "http://cardmanager.chendind.com/api/";
+    public static final String OSS_URL = "https://xiyou-cardmanager.oss-cn-hangzhou.aliyuncs.com";
 
 
     // --------------应用缓存文件基本信息-----------------------

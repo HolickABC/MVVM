@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="password_size">32dp</dimen>
+    <dimen name="password_padding">11dp</dimen>
+    <dimen name="box_margin">10dp</dimen>
+</resources>

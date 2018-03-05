@@ -1,12 +1,14 @@
 package com.xclib.mvvm;
 
+import android.content.Context;
+
 /**
  * Created by xiongch on 2018/1/4.
  */
 
 public interface IViewModel {
 
-    void start();
+    void onStart();
 
     void showNetworkErrorView();
 
@@ -15,4 +17,5 @@ public interface IViewModel {
     void showSuccessfulView();
 
     void showErrorView();
+
 }

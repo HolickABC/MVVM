@@ -35,7 +35,7 @@ public class IndexAdapter extends MyBaseMultiAdapter<IndexItem, MyBaseViewHolder
                 IndexFragmentTextBinding textItemBinding = (IndexFragmentTextBinding) helper.getBinding();
                 String str = (String) item.getData();
                 textItemBinding.setData(str);
-                helper.addOnClickListener(textItemBinding.textView.getId());
+                helper.addOnClickListener(textItemBinding.cardView.getId());
                 break;
         }
     }

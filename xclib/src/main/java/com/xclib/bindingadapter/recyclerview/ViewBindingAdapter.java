@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.xclib.toast.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class ViewBindingAdapter {
             if (data.size() < PAGE_SIZE) {
                 //如果不够一页则显示加载完成
                 adapter.loadMoreEnd();
-                ToastUtils.showShort("没有更多数据了");
+//                ToastHelper.showShort("没有更多数据了");
             } else {
                 adapter.loadMoreComplete();
             }
@@ -92,6 +93,14 @@ public class ViewBindingAdapter {
 
     }
 
+    @BindingAdapter("loadMore")
+    public static void loadMore(RecyclerView recyclerView, BaseQuickAdapter.RequestLoadMoreListener listener){
+        BaseQuickAdapter adapter = ((BaseQuickAdapter)recyclerView.getAdapter());
+        if(adapter != null){
+//            adapter.setOnLoadMoreListener(listener);
+            adapter.setOnLoadMoreListener(listener, recyclerView);
+        }
+    }
 
 
 }

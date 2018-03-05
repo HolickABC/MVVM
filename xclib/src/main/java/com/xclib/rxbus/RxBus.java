@@ -55,8 +55,8 @@ public class RxBus {
      * @param bean
      * @param consumer
      */
-    public void subscribe(Class bean, Consumer consumer) {
-        disposable = toObservable(bean)
+    public Disposable subscribe(Class bean, Consumer<RxBusEvent> consumer) {
+        return disposable = toObservable(bean)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(consumer);

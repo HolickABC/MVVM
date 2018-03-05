@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.xiongch.mvvm.ui.index.viewmodel.MessageViewModel" />
+
+        <variable
+            name="activity"
+            type="com.xiongch.mvvm.ui.index.MessageActivity" />
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.xiongch.mvvm.ui.index.MessageActivity"
+        android:background="@color/white">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/MyToolbar"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            >
+
+            <include
+                android:id="@+id/titleBar"
+                layout="@layout/comm_title"
+                bind:bgColor="@{@color/colorPrimary}"
+                bind:ivLeft="@{@drawable/ic_back_white}"
+                bind:ivLeftClick="@{() -> activity.onIvLeftClick()}"
+                bind:title="@{`消息列表`}"
+                bind:titleColor="@{@color/white}"
+                />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

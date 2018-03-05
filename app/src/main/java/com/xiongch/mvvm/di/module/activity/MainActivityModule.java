@@ -1,12 +1,12 @@
-package com.xiongch.mvvm.di.module;
+package com.xiongch.mvvm.di.module.activity;
 
 import android.support.v4.app.Fragment;
 
 import com.xclib.di.scope.ActivityScope;
 import com.xiongch.mvvm.ui.index.IndexFragment;
 import com.xiongch.mvvm.ui.loan.LoanFragment;
-import com.xiongch.mvvm.ui.main.MainModel;
-import com.xiongch.mvvm.ui.main.MainViewModel;
+import com.xiongch.mvvm.ui.main.model.MainModel;
+import com.xiongch.mvvm.ui.main.viewmodel.MainViewModel;
 import com.xiongch.mvvm.ui.me.MeFragment;
 
 import java.util.ArrayList;

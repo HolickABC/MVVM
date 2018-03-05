@@ -8,12 +8,13 @@ import java.io.Serializable;
 
 public class BaseModel<T> implements Serializable {
 
-    public int state;
+    public String msg;
+    public int code;
     public T data;
 
-    public boolean sucess(){
+    public boolean success(){
         //成功的状态码标识
-        return state == 0;
+        return code == 0;
     }
 
 }

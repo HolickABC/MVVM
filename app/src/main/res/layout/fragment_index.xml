@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.xiongch.mvvm.ui.index.IndexViewModel" />
+            type="com.xiongch.mvvm.ui.index.viewmodel.IndexViewModel" />
 
         <variable
             name="loadService"
@@ -20,18 +20,23 @@
         android:layout_height="match_parent"
         bind:loadService="@{loadService}"
         bind:status="@{viewModel.status}"
+        android:background="@color/white"
         >
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            bind:isRefresh="@{viewModel.isRefresh}">
+            bind:isRefresh="@{viewModel.isRefresh}"
+            bind:onRefresh="@{() -> viewModel.onRefresh()}"
+            >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager"
+                bind:loadMore="@{() -> viewModel.loadMore()}"
                 bind:data="@{viewModel.items}"
                 bind:isLoadMore="@{viewModel.isLoadMore}"></android.support.v7.widget.RecyclerView>
 

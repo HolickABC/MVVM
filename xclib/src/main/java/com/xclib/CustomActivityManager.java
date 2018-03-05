@@ -11,6 +11,8 @@ package com.xclib;
 
 import android.app.Activity;
 
+import com.xclib.base.BaseApplication;
+
 import java.util.Stack;
 
 /**
@@ -125,9 +127,12 @@ public class CustomActivityManager {
                 return;
             }
 
-            if (activity.getClass().equals(cls[0]) || activity.getClass().equals(cls[1])) {
-                return;
+            for(int i=0; i<cls.length; i++){
+                if(activity.getClass().equals(cls[i])){
+                    return;
+                }
             }
+
             activity.finish();
         }
     }
@@ -137,6 +142,14 @@ public class CustomActivityManager {
             return activityStack.size();
         else
             return 0;
+    }
+
+    public boolean hasActivity(Class<?> cls){
+        if(activityStack.contains(cls)){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

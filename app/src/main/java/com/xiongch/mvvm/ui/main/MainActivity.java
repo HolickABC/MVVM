@@ -2,17 +2,14 @@ package com.xiongch.mvvm.ui.main;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.View;
 
-import com.xclib.adapter.FragmentVpAdapter;
 import com.xclib.base.BaseActivity;
 import com.xclib.widget.MenuBar;
 import com.xiongch.mvvm.R;
 import com.xiongch.mvvm.databinding.ActivityMainBinding;
-import com.xiongch.mvvm.ui.index.IndexFragment;
-import com.xiongch.mvvm.ui.loan.LoanFragment;
-import com.xiongch.mvvm.ui.me.MeFragment;
+import com.xiongch.mvvm.ui.main.viewmodel.MainViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,8 +27,19 @@ public class  MainActivity extends BaseActivity<ActivityMainBinding, MainViewMod
     }
 
     @Override
+    public void initSwipeBackHelper() {
+        super.initSwipeBackHelper();
+        mSwipeBackPage.setSwipeBackEnable(false);
+    }
+
+    @Override
+    protected View getStatusBarView() {
+        return null;
+    }
+
+    @Override
     protected void bindDataBindingAndViewModel() {
-        mViewModel = (MainViewModel) getViewModel(MainViewModel.class, mainViewModel);
+        mViewModel = (MainViewModel) getViewModel(mainViewModel);
         mBinding.setViewModel(mViewModel);
     }
 

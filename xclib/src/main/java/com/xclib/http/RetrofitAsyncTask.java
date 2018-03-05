@@ -88,6 +88,18 @@ public class RetrofitAsyncTask {
             builder.addInterceptor(loggingInterceptor);
         }
 
+        //请求头转换content-type
+        builder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request()
+                        .newBuilder()
+                        .addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+                        .build();
+                return chain.proceed(request);
+            }
+        });
+
         //存储cookie
         ClearableCookieJar cookieJar =
                 new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getInstance().getApplicationContext()));

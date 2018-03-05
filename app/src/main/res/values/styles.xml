@@ -12,11 +12,19 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--背景透明，不设滑动关闭时背景就是黑的-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/window_bg</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MainTheme" parent="AppTheme">
+        <!--用于最底层-->
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
 
     <style name="MyToolbar" parent="Widget.AppCompat.Toolbar">
         <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->

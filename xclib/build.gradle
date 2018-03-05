@@ -37,8 +37,7 @@ dependencies {
 
     def supportVersion = '26.1.0'
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -61,6 +60,7 @@ dependencies {
     //cookie持久保存
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //support
+    compile "com.android.support:support-v4:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
     compile "com.android.support:cardview-v7:$supportVersion"
@@ -69,13 +69,16 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     //other
-    compile 'com.blankj:utilcode:1.10.0'
+    compile 'com.blankj:utilcode:1.12.0'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.just.agentweb:agentweb:2.0.1'
-    compile 'com.github.medyo:fancybuttons:1.8.4'
     compile 'com.kingja.loadsir:loadsir:1.3.5'
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile 'com.gyf.barlibrary:barlibrary:2.3.0'
+    compile 'com.jude:rollviewpager:1.4.6'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.33'
-    compile 'com.github.pinguo-zhouwei:MZBannerView:v2.0.0'
+    compile 'com.jude:swipebackhelper:3.1.2'
+    compile 'com.lzy.widget:imagepicker:0.6.1'
+    //动画库
+    compile 'com.github.florent37:viewanimator:1.0.5'
 }

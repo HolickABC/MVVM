@@ -29,11 +29,12 @@ public class RxHelper {
                         MyLogUtil.i("test", "rxhelper --- result from network: " + result);
                         try {
                             if(result != null){
-                                if(result.sucess()){
+                                if(result.success()){
                                     return createData(result.data);
                                 }else {
-                                    String message = ErrorMessage.get(result.state);
-                                    return Observable.error(new APIException(result.state,message));
+//                                    String message = ErrorMessage.get(result.code);
+                                    String message = result.msg;
+                                    return Observable.error(new APIException(result.code,message));
                                 }
                             }else {
                                 return null;
@@ -53,12 +54,16 @@ public class RxHelper {
     }
 
     //创建成功的数据
-    public static <T> Observable<T> createData(final T data) {
+    private static <T> Observable<T> createData(final T data) {
         return Observable.create(new ObservableOnSubscribe<T>() {
             @Override
             public void subscribe(ObservableEmitter<T> emitter) throws Exception {
                 try {
-                    emitter.onNext(data);
+                    if(data == null){
+                        emitter.onNext((T) new Object());
+                    }else {
+                        emitter.onNext(data);
+                    }
                     emitter.onComplete();
                 }catch (Exception e){
                     emitter.onError(e);

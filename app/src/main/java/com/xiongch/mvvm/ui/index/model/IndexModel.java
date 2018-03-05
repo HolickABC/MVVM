@@ -1,4 +1,4 @@
-package com.xiongch.mvvm.ui.index;
+package com.xiongch.mvvm.ui.index.model;
 
 import com.xclib.http.DefaultDisposableObserver;
 import com.xclib.http.SchedulerTransformer;
@@ -7,6 +7,7 @@ import com.xiongch.mvvm.ui.index.bean.IndexItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -35,12 +36,10 @@ public class IndexModel {
                             datas.add(item);
                         }
 
-                        Thread.sleep(2000);
-
                         return datas;
                     }
                 }
-        ).compose(new SchedulerTransformer<>()).subscribeWith(observer);
+        ).compose(new SchedulerTransformer<>()).delay(2000, TimeUnit.MILLISECONDS).subscribeWith(observer);
     }
 
     public Observable<IndexItem> requestCarousel(){
@@ -79,16 +78,14 @@ public class IndexModel {
             @Override
             public void subscribe(ObservableEmitter<List<IndexItem>> e) throws Exception {
                 List<IndexItem> datas = new ArrayList<>();
-                for(int i=0; i<11; i++){
+                for(int i=0; i<5; i++){
                     IndexItem item = new IndexItem(i+" new",IndexItem.TEXT);
                     datas.add(item);
                 }
 
-                Thread.sleep(2000);
-
                 e.onNext(datas);
                 e.onComplete();
             }
-        }).compose(new SchedulerTransformer<List<IndexItem>>()).subscribeWith(observer);
+        }).compose(new SchedulerTransformer<List<IndexItem>>()).delay(2000, TimeUnit.MILLISECONDS).subscribeWith(observer);
     }
 }

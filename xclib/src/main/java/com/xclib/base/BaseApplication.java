@@ -8,8 +8,11 @@ import android.support.multidex.MultiDex;
 
 import com.blankj.utilcode.util.Utils;
 import com.kingja.loadsir.core.LoadSir;
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.view.CropImageView;
 import com.xclib.CustomActivityManager;
 import com.xclib.config.ProjectConfig;
+import com.xclib.imagepicker.GlideImageLoader;
 import com.xclib.loadsir.EmptyCallback;
 import com.xclib.loadsir.ErrorCallback;
 import com.xclib.loadsir.LoadingCallback;
@@ -49,18 +52,18 @@ public class BaseApplication extends Application {
         initFileDir();// 初始化文件缓存目录
         initOtherLib();//导入第三方SDK包
 
-        int pid = android.os.Process.myPid();
-        String processAppName = getAppName(pid);
-        // 如果app启用了远程的service，此application:onCreate会被调用2次
-        // 为了防止环信SDK被初始化2次，加此判断会保证SDK被初始化1次
-        // 默认的app会在以包名为默认的process name下运行，如果查到的process name不是app的process name就立即返回
-
-        if (processAppName == null || !processAppName.equalsIgnoreCase(getPackageName())) {
-            //"com.easemob.chatuidemo"为demo的包名，换到自己项目中要改成自己包名
-
-            // 则此application::onCreate 是被service 调用的，直接返回
-            return;
-        }
+//        int pid = android.os.Process.myPid();
+//        String processAppName = getAppName(pid);
+//        // 如果app启用了远程的service，此application:onCreate会被调用2次
+//        // 为了防止环信SDK被初始化2次，加此判断会保证SDK被初始化1次
+//        // 默认的app会在以包名为默认的process name下运行，如果查到的process name不是app的process name就立即返回
+//
+//        if (processAppName == null || !processAppName.equalsIgnoreCase(getPackageName())) {
+//            //"com.easemob.chatuidemo"为demo的包名，换到自己项目中要改成自己包名
+//
+//            // 则此application::onCreate 是被service 调用的，直接返回
+//            return;
+//        }
     }
 
     @Override
@@ -158,6 +161,21 @@ public class BaseApplication extends Application {
     private void initOtherLib() {
         initLoadSir();
         initUtils();
+        initImagePicker();
+    }
+
+    private void initImagePicker() {
+        ImagePicker imagePicker = ImagePicker.getInstance();
+        imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
+        imagePicker.setShowCamera(true);                      //显示拍照按钮
+        imagePicker.setCrop(true);                           //允许裁剪（单选才有效）
+        imagePicker.setSaveRectangle(true);                   //是否按矩形区域保存
+        imagePicker.setSelectLimit(1);                         //选中数量限制
+        imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
+        imagePicker.setFocusWidth(800);                       //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setFocusHeight(800);                      //裁剪框的高度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setOutPutX(1000);                         //保存文件的宽度。单位像素
+        imagePicker.setOutPutY(1000);                         //保存文件的高度。单位像素
     }
 
     private void initUtils() {

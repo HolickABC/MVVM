@@ -1,8 +1,8 @@
-package com.xiongch.mvvm.di.module;
+package com.xiongch.mvvm.di.module.fragment;
 
 import com.xclib.di.scope.FragmentScope;
-import com.xiongch.mvvm.ui.index.IndexModel;
-import com.xiongch.mvvm.ui.index.IndexViewModel;
+import com.xiongch.mvvm.ui.index.model.IndexModel;
+import com.xiongch.mvvm.ui.index.viewmodel.IndexViewModel;
 
 import dagger.Module;
 import dagger.Provides;

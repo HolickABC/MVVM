@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.xclib.toast.ToastHelper;
 import com.xiongch.mvvm.databinding.IndexFragmentBannerItemBinding;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
 
@@ -28,7 +29,7 @@ public class BannerViewHolder implements MZViewHolder<Integer> {
         binding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showShort(i+"");
+                ToastHelper.showShort(i+"");
             }
         });
         binding.executePendingBindings();

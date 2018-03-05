@@ -19,7 +19,7 @@ import io.reactivex.functions.Function;
 
 public class RetryWhenNetworkException implements Function<Observable<? extends Throwable>, Observable<?>> {
 
-    private int count = 3;
+    private int count = 2;
     private long delay = 1000;
     private long increaseDelay = 1000;
 

@@ -1,2 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xclib" />
+    package="com.xclib" >
+    <application>
+        <activity
+            android:theme="@style/ProgressActivityStyle"
+            android:name="com.xclib.http.ProgressDialogActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+    </application>
+</manifest>

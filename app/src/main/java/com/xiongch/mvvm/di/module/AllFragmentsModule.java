@@ -2,6 +2,7 @@ package com.xiongch.mvvm.di.module;
 
 import com.xclib.base.BaseFragmentComponent;
 import com.xclib.di.scope.FragmentScope;
+import com.xiongch.mvvm.di.module.fragment.IndexFragmentModule;
 import com.xiongch.mvvm.ui.index.IndexFragment;
 
 import dagger.Module;

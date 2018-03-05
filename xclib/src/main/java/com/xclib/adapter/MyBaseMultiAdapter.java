@@ -22,7 +22,7 @@ import java.util.List;
 
 public abstract class MyBaseMultiAdapter<T extends MultiItemEntity, K extends BaseViewHolder> extends BaseMultiItemQuickAdapter<T,K> {
 
-    public MyBaseMultiAdapter(List data) {
+    public MyBaseMultiAdapter(List<T> data) {
         super(data);
         openLoadAnimation(BaseQuickAdapter.ALPHAIN);
     }

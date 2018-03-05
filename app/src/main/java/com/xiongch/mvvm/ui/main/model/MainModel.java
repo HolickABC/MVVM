@@ -1,4 +1,4 @@
-package com.xiongch.mvvm.ui.main;
+package com.xiongch.mvvm.ui.main.model;
 
 import javax.inject.Inject;
 

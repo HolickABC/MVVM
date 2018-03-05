@@ -1,8 +1,7 @@
-package com.xiongch.mvvm.ui.main;
+package com.xiongch.mvvm.ui.main.viewmodel;
 
 import com.xclib.mvvm.BaseViewModel;
-
-import javax.inject.Inject;
+import com.xiongch.mvvm.ui.main.model.MainModel;
 
 /**
  * Created by xiongch on 2018/1/4.

@@ -1,12 +1,11 @@
 package com.xclib.http;
 
-import android.app.Dialog;
-import android.content.Context;
-import com.blankj.utilcode.util.ToastUtils;
+
 import com.xclib.base.BaseApplication;
 import com.xclib.mvvm.IViewModel;
 import com.xclib.rxbus.RxBus;
 import com.xclib.rxbus.RxBusEvent;
+import com.xclib.toast.ToastHelper;
 import com.xclib.util.DialogUtil;
 import com.xclib.util.MyLogUtil;
 import java.net.ConnectException;
@@ -22,19 +21,15 @@ import retrofit2.HttpException;
  */
 
 public abstract class DefaultDisposableObserver<T> extends DisposableObserver<T> {
-    private Context context;
     private boolean showProgressDialog = false;
-    private Dialog dialog;
-    IViewModel viewModel;
+    private IViewModel viewModel;
 
     public DefaultDisposableObserver(){
 
     }
 
     public DefaultDisposableObserver(boolean showProgressDialog){
-        this.context = BaseApplication.getInstance().getApplicationContext();
         this.showProgressDialog = showProgressDialog;
-        dialog = DialogUtil.getProgressDialog(context,"加载中...");
     }
 
     //此构造方法用于显示状态图
@@ -70,7 +65,7 @@ public abstract class DefaultDisposableObserver<T> extends DisposableObserver<T>
     public void onError(Throwable e) {
         hideProgressDialog();
         if (e instanceof SocketTimeoutException || e instanceof ConnectException || e instanceof UnknownHostException || e instanceof UnknownServiceException || e instanceof HttpException) {
-            ToastUtils.showShort("网络异常");
+            ToastHelper.showShort("网络异常");
 
             //注册viewModel    显示网络异常的view
             if (viewModel != null) {
@@ -85,9 +80,10 @@ public abstract class DefaultDisposableObserver<T> extends DisposableObserver<T>
             int code = ((APIException)e).getCode();
             String message = e.getMessage();
             MyLogUtil.i("test", "APIException: "+ code + ErrorMessage.get(code));
-            ToastUtils.showShort(message);
+            ToastHelper.showShort(message);
 
-            if(code == 10005){//登录过期
+            if(code == 10001){//登录过期
+                ToastHelper.showShort("登录超时");
                 RxBus.getInstance().post(new RxBusEvent(700,"login_expired_from_default_subscriber"));
             }
         } else {
@@ -105,14 +101,17 @@ public abstract class DefaultDisposableObserver<T> extends DisposableObserver<T>
     protected abstract void _onCompleted();
 
     private void showProgressDialog() {
-        if(showProgressDialog && dialog!=null){
-            dialog.show();
+        if(showProgressDialog){
+            ProgressDialogActivity.start(BaseApplication.getInstance().getApplicationContext(), true);
         }
     }
 
     private void hideProgressDialog() {
-        if(showProgressDialog && dialog!=null && dialog.isShowing()){
-            dialog.dismiss();
+        if(showProgressDialog && ProgressDialogActivity.mActivity != null){
+            ProgressDialogActivity.mActivity.finish();
+            ProgressDialogActivity.mActivity = null;
         }
     }
+
+
 }

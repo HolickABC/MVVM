@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="title"
@@ -16,8 +19,40 @@
             type="int"/>
 
         <variable
+            name="ivLeft"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
             name="ivLeftClick"
             type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="ivRight"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="ivRightClick"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="tvRightVisible"
+            type="boolean" />
+
+        <variable
+            name="tvRight"
+            type="String" />
+
+        <variable
+            name="tvRightColor"
+            type="int" />
+
+        <variable
+            name="tvRightClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="lineVisible"
+            type="boolean" />
 
     </data>
 
@@ -30,7 +65,7 @@
         <RelativeLayout
             android:id="@+id/rl_titlebar2"
             android:layout_width="match_parent"
-            android:layout_height="43dp">
+            android:layout_height="44dp">
 
             <LinearLayout
                 android:id="@+id/ll_left"
@@ -45,10 +80,12 @@
 
                 <ImageView
                     android:id="@+id/iv_left"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical" />
+                    android:gravity="center_vertical"
+                    android:src="@{ivLeft}"
+                    />
             </LinearLayout>
 
             <TextView
@@ -69,15 +106,16 @@
                 android:layout_alignParentRight="true"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:background="?android:attr/selectableItemBackground">
+                android:background="?android:attr/selectableItemBackground"
+                android:onClickListener="@{ivRightClick}">
 
                 <ImageView
                     android:id="@+id/iv_right"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_centerVertical="true"
                     android:contentDescription="@string/app_name"
-                    android:textSize="20dp" />
+                    android:src="@{ivRight}"/>
 
                 <ImageView
                     android:id="@+id/iv_alarm_tip"
@@ -104,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{title}"
                     android:textColor="@{titleColor}"
-                    android:textSize="18dp" />
+                    android:textSize="17dp" />
 
                 <TextView
                     android:id="@+id/tv_dropdown"
@@ -125,12 +163,15 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textSize="12dp"
-                android:textColor="#3c3c3c"
-                android:visibility="visible"
+                android:visibility="@{tvRightVisible ? View.VISIBLE : View.GONE }"
                 android:gravity="center"
                 android:background="?android:attr/selectableItemBackground"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp" />
+                android:paddingRight="15dp"
+                android:text="@{tvRight}"
+                android:textColor="@{tvRightColor}"
+                android:onClickListener="@{tvRightClick}"
+                />
 
         </RelativeLayout>
 
@@ -139,7 +180,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#efefef"
-            android:layout_below="@+id/rl_titlebar2"></View>
+            android:layout_below="@+id/rl_titlebar2"
+            android:visibility="@{lineVisible ? View.VISIBLE : View.GONE }"></View>
 
 
     </RelativeLayout>

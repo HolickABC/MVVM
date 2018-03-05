@@ -15,7 +15,8 @@ public class EmptyCallback extends Callback {
     }
 
     @Override
-    protected boolean onRetry(Context context, View view) {
+    protected boolean onReloadEvent(Context context, View view) {
         return true;
     }
+
 }
